@@ -4,7 +4,7 @@ import { MemoryRouter } from "react-router-dom";
 
 import { describe, it, expect } from "../../tester/runner";
 
-const List = require("./List").default;
+const List = require("../src/pages/List").default;
 
 // https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/guides/testing.md
 describe("List", () => {

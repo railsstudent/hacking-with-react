@@ -16,6 +16,10 @@ class Detail extends React.Component {
   }
 
   fetchFeed(type) {
+    if (this.props.match.params.repo === "") {
+      // empty repo name, bail out!
+      return;
+    }
     return axios.get(`${baseURL}/${this.props.match.params.repo}/${type}`);
   }
 
