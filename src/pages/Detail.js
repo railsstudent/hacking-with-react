@@ -85,7 +85,7 @@ class Detail extends React.Component {
   }
 
   render() {
-    let content = this.renderCommits();
+    let content = null;
     if (this.state.view === "commits") {
       content = this.renderCommits();
     } else if (this.state.view === "forks") {
