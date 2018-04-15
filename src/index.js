@@ -6,13 +6,11 @@ import routes from "./routes";
 
 const Root = () => {
   const routeComponents = routes.map(({ path, component, exact }, key) => {
-    const routeComponent =
-      exact && exact === true ? (
-        <Route exact path={path} component={component} key={key} />
-      ) : (
-        <Route path={path} component={component} key={key} />
-      );
-    return routeComponent;
+    return exact && exact === true ? (
+      <Route exact path={path} component={component} key={key} />
+    ) : (
+      <Route path={path} component={component} key={key} />
+    );
   });
   return (
     <BrowserRouter>

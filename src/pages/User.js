@@ -42,39 +42,32 @@ class User extends React.Component {
           const { url = null, avatar_url = null, login = "Anonymous" } = actor;
           const { commits = [] } = payload;
           return (
-            <div>
-              <div key={index}>
-                <img
-                  src={avatar_url}
-                  alt="avatar url"
-                  width="100"
-                  height="100"
-                />
-                <p>
-                  Type: {type}
-                  <br />
-                  Username: {login}&nbsp;&nbsp; (<a href={url} target="_blank">
-                    {url}
-                  </a>)
-                </p>
-                <p>
-                  Contributed Repo: {repo.name}&nbsp;&nbsp;(
-                  <a href={repo.url} target="_blank">
-                    {repo.url}
-                  </a>
-                  )
-                  <br />
-                </p>
-                {commits.length > 0 ? <p>Commit History</p> : <p>&nbsp;</p>}
-                <ol>
-                  {commits.map((commit, index2) => {
-                    const message = commit.message ? commit.message : "N/A";
-                    const commitKey = `commit-${index2}`;
-                    return <li key={commitKey}>{message}</li>;
-                  })}
-                </ol>
-                <hr />
-              </div>
+            <div key={index}>
+              <img src={avatar_url} alt="avatar url" width="100" height="100" />
+              <p>
+                Type: {type}
+                <br />
+                Username: {login}&nbsp;&nbsp; (<a href={url} target="_blank">
+                  {url}
+                </a>)
+              </p>
+              <p>
+                Contributed Repo: {repo.name}&nbsp;&nbsp;(
+                <a href={repo.url} target="_blank">
+                  {repo.url}
+                </a>
+                )
+                <br />
+              </p>
+              {commits.length > 0 ? <p>Commit History</p> : <p>&nbsp;</p>}
+              <ol>
+                {commits.map((commit, index2) => {
+                  const message = commit.message ? commit.message : "N/A";
+                  const commitKey = `commit-${index2}`;
+                  return <li key={commitKey}>{message}</li>;
+                })}
+              </ol>
+              <hr />
             </div>
           );
         })}
