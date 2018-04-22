@@ -21,7 +21,6 @@ class Detail extends React.Component {
       // empty repo name, bail out!
       return;
     }
-    console.log("test", this.props.match.params.repo);
     return axios.get(`${baseURL}/${this.props.match.params.repo}/${type}`);
   }
 

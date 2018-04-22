@@ -59,24 +59,23 @@ describe("Detail", () => {
     expect(testDetail.instance().state.view).toEqual("forks");
   });
 
-  // it("fetches forks from GitHub", () => {
-  //   const rendered = shallow(
-  //     <MemoryRouter>
-  //       <Detail match={{ params: { repo: "" } }} />
-  //     </MemoryRouter>
-  //   );
+  it("fetches forks from GitHub", () => {
+    const rendered = shallow(
+      <MemoryRouter>
+        <Detail match={{ params: { repo: "react" } }} />
+      </MemoryRouter>
+    );
 
-  //   waitsFor(
-  //     () => {
-  //       console.log("In waitFor: " + rendered.state.forks.length);
-  //       return rendered.state.forks.length > 0;
-  //     },
-  //     "commits to be set",
-  //     2000
-  //   );
+    const testDetail = rendered.find(Detail).dive();
+    testDetail
+      .find("button")
+      .at(1)
+      .simulate("click");
 
-  //   runs(() => {
-  //     expect(rendered.state.forks.length).toEqual(30);
-  //   });
-  //});
+    rendered.update();
+    setTimeout(() => {
+      expect(testDetail.instance().state.forks.length).toEqual(30);
+      expect(testDetail.instance().state.commits.length).toEqual(30);
+    }, 10000);
+  });
 });
