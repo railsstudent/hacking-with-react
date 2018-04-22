@@ -2,6 +2,7 @@ import React from "react";
 import Enzyme, { shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { MemoryRouter } from "react-router-dom";
+import TestUtils from "react-dom/test-utils";
 
 import { describe, it, expect } from "../../tester/runner";
 
@@ -41,4 +42,41 @@ describe("Detail", () => {
         .instance().state.view
     ).toEqual("commits");
   });
+
+  it("shows forks when the button is tapped", () => {
+    const rendered = shallow(
+      <MemoryRouter>
+        <Detail match={{ params: { repo: "" } }} />
+      </MemoryRouter>
+    );
+
+    const testDetail = rendered.find(Detail).dive();
+    testDetail
+      .find("button")
+      .at(1)
+      .simulate("click");
+
+    expect(testDetail.instance().state.view).toEqual("forks");
+  });
+
+  // it("fetches forks from GitHub", () => {
+  //   const rendered = shallow(
+  //     <MemoryRouter>
+  //       <Detail match={{ params: { repo: "" } }} />
+  //     </MemoryRouter>
+  //   );
+
+  //   waitsFor(
+  //     () => {
+  //       console.log("In waitFor: " + rendered.state.forks.length);
+  //       return rendered.state.forks.length > 0;
+  //     },
+  //     "commits to be set",
+  //     2000
+  //   );
+
+  //   runs(() => {
+  //     expect(rendered.state.forks.length).toEqual(30);
+  //   });
+  //});
 });
